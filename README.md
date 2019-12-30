@@ -4,7 +4,7 @@
 
 # wg-dashboard
 
-![Dashboard](dev/dashboard.png)
+![Dashboard](dev/hacker.png)
 
 ## Description
 
