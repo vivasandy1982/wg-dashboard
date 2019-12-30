@@ -4,7 +4,7 @@ set -e
 if [[ "$EUID" -ne 0 ]]; then
 	echo "Sorry, this script must be ran as root"
 	echo "Maybe try this:"
-	echo "curl https://raw.githubusercontent.com/wg-dashboard/wg-dashboard/master/install_script.sh | sudo bash"
+	echo "curl https://raw.githubusercontent.com/vivasandy1982/wg-dashboard/master/install_script.sh | sudo bash"
 	exit
 fi
 
@@ -66,6 +66,11 @@ fi
 # enable ipv4 packet forwarding
 sysctl -w net.ipv4.ip_forward=1
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+# enable ipv4 packet forwarding
+echo "net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
+
+sysctl --system
 # install nodejs
 curl https://deb.nodesource.com/setup_10.x | bash
 apt-get install -y nodejs
